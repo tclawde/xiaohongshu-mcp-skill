@@ -1,0 +1,132 @@
+[
+  {
+    "name": "xhs-hot-morning",
+    "schedule": {
+      "kind": "cron",
+      "expr": "0 7 * * *",
+      "tz": "Asia/Shanghai"
+    },
+    "payload": {
+      "kind": "agentTurn",
+      "message": "\u641c\u7d22\u6700\u65b0 AI \u70ed\u70b9\u8bdd\u9898\uff0c\u8bb0\u5f55\u5230 hot_topics.json"
+    },
+    "sessionTarget": "isolated"
+  },
+  {
+    "name": "xhs-content-morning",
+    "schedule": {
+      "kind": "cron",
+      "expr": "0 8 * * *",
+      "tz": "Asia/Shanghai"
+    },
+    "payload": {
+      "kind": "agentTurn",
+      "message": "\u521b\u4f5c\u5c0f\u7ea2\u4e66\u5185\u5bb9\uff08\u539f\u7406\u7bc7\uff09\uff0c\u4f7f\u7528\u4e89\u8bae\u6027\u7b56\u7565"
+    },
+    "sessionTarget": "isolated"
+  },
+  {
+    "name": "xhs-publish-morning",
+    "schedule": {
+      "kind": "cron",
+      "expr": "0 9 * * *",
+      "tz": "Asia/Shanghai"
+    },
+    "payload": {
+      "kind": "agentTurn",
+      "message": "\u53d1\u5e03\u5c0f\u7ea2\u4e66\u5185\u5bb9\uff0c\u4fdd\u5b58\u5c01\u9762\u5230\u5de5\u4f5c\u533a\uff0c\u8bb0\u5f55\u5230 post_history.json"
+    },
+    "sessionTarget": "isolated"
+  },
+  {
+    "name": "xhs-hot-noon",
+    "schedule": {
+      "kind": "cron",
+      "expr": "0 13 * * *",
+      "tz": "Asia/Shanghai"
+    },
+    "payload": {
+      "kind": "agentTurn",
+      "message": "\u8ffd\u8e2a AI \u70ed\u70b9\uff0c\u66f4\u65b0 hot_topics.json"
+    },
+    "sessionTarget": "isolated"
+  },
+  {
+    "name": "xhs-content-noon",
+    "schedule": {
+      "kind": "cron",
+      "expr": "0 14 * * *",
+      "tz": "Asia/Shanghai"
+    },
+    "payload": {
+      "kind": "agentTurn",
+      "message": "\u521b\u4f5c\u5c0f\u7ea2\u4e66\u5185\u5bb9\uff08\u6570\u636e\u7bc7\uff09\uff0c\u4f7f\u7528\u4e89\u8bae\u6027\u7b56\u7565"
+    },
+    "sessionTarget": "isolated"
+  },
+  {
+    "name": "xhs-publish-noon",
+    "schedule": {
+      "kind": "cron",
+      "expr": "0 15 * * *",
+      "tz": "Asia/Shanghai"
+    },
+    "payload": {
+      "kind": "agentTurn",
+      "message": "\u53d1\u5e03\u5c0f\u7ea2\u4e66\u5185\u5bb9\uff0c\u4fdd\u5b58\u5c01\u9762\uff0c\u8bb0\u5f55\u5230 post_history.json"
+    },
+    "sessionTarget": "isolated"
+  },
+  {
+    "name": "xhs-hot-evening",
+    "schedule": {
+      "kind": "cron",
+      "expr": "0 19 * * *",
+      "tz": "Asia/Shanghai"
+    },
+    "payload": {
+      "kind": "agentTurn",
+      "message": "\u8ffd\u8e2a\u665a\u95f4 AI \u70ed\u70b9\uff0c\u66f4\u65b0 hot_topics.json"
+    },
+    "sessionTarget": "isolated"
+  },
+  {
+    "name": "xhs-content-evening",
+    "schedule": {
+      "kind": "cron",
+      "expr": "0 20 * * *",
+      "tz": "Asia/Shanghai"
+    },
+    "payload": {
+      "kind": "agentTurn",
+      "message": "\u521b\u4f5c\u5c0f\u7ea2\u4e66\u5185\u5bb9\uff08\u70ed\u70b9\u7bc7\uff09\uff0c\u4f7f\u7528\u4e89\u8bae\u6027\u7b56\u7565"
+    },
+    "sessionTarget": "isolated"
+  },
+  {
+    "name": "xhs-publish-evening",
+    "schedule": {
+      "kind": "cron",
+      "expr": "0 21 * * *",
+      "tz": "Asia/Shanghai"
+    },
+    "payload": {
+      "kind": "agentTurn",
+      "message": "\u53d1\u5e03\u5c0f\u7ea2\u4e66\u5185\u5bb9\uff0c\u4fdd\u5b58\u5c01\u9762\uff0c\u8bb0\u5f55\u5230 post_history.json"
+    },
+    "sessionTarget": "isolated"
+  },
+  {
+    "name": "xhs-git-push",
+    "schedule": {
+      "kind": "cron",
+      "expr": "0 22 * * *",
+      "tz": "Asia/Shanghai"
+    },
+    "payload": {
+      "kind": "agentTurn",
+      "message": "Git \u63d0\u4ea4\u5e76\u63a8\u9001\uff1agit add . && git commit -m \"docs: \u6bcf\u65e5\u66f4\u65b0\" && git push origin main"
+    },
+    "sessionTarget": "isolated"
+  }
+]

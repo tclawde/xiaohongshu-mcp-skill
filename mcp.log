@@ -1,0 +1,154 @@
+time="2026-02-11T16:50:57+08:00" level=info msg="Registered 13 MCP tools"
+time="2026-02-11T16:50:57+08:00" level=info msg="MCP Server initialized with official SDK"
+time="2026-02-11T16:50:57+08:00" level=info msg="启动 HTTP 服务器: :18060"
+time="2026-02-11T16:51:08+08:00" level=info msg="GET /api/v1/login/status ai-report 200"
+[GIN] 2026/02/11 - 16:51:08 | 200 |  5.728873958s |             ::1 | GET      "/api/v1/login/status"
+[GIN] 2026/02/11 - 16:51:59 | 404 |       4.167µs |             ::1 | POST     "/api/v1/notes/publish"
+[GIN] 2026/02/11 - 16:52:13 | 404 |       6.459µs |             ::1 | GET      "/"
+time="2026-02-11T16:52:27+08:00" level=error msg="POST /api/v1/publish  400"
+[GIN] 2026/02/11 - 16:52:27 | 400 |      368.25µs |             ::1 | POST     "/api/v1/publish"
+time="2026-02-11T16:53:37+08:00" level=warning msg="等待页面加载出现问题: {-32000 Execution context was destroyed. }，继续尝试"
+time="2026-02-11T16:53:44+08:00" level=warning msg="图片文件不存在: file:///Users/apple/.openclaw/skills/xiaohongshu-mcp/test_cover.jpg"
+time="2026-02-11T16:53:44+08:00" level=info msg="发布内容: title=美院学生都在用AI？我就笑了, images=1, tags=[], schedule=<nil>"
+time="2026-02-11T16:54:04+08:00" level=error msg="发布内容失败: title=美院学生都在用AI？我就笑了 小红书发布失败: 查找标题输入框失败: context canceled"
+time="2026-02-11T16:54:04+08:00" level=error msg="POST /api/v1/publish  500"
+[GIN] 2026/02/11 - 16:54:04 | 500 |    30.181531s |             ::1 | POST     "/api/v1/publish"
+time="2026-02-11T16:55:40+08:00" level=warning msg="等待页面加载出现问题: {-32000 Execution context was destroyed. }，继续尝试"
+time="2026-02-11T16:55:45+08:00" level=info msg="获取有效图片：/Users/apple/.openclaw/workspace/test_cover.jpg"
+2026/02/11 16:55:45 INFO 图片已提交上传 index=1 path=/Users/apple/.openclaw/workspace/test_cover.jpg
+2026/02/11 16:55:52 INFO 等待图片上传 current=1 expected=1
+2026/02/11 16:55:52 INFO 图片上传完成 count=1
+time="2026-02-11T16:55:53+08:00" level=info msg="发布内容: title=美院学生都在用AI？我就笑了, images=1, tags=[], schedule=<nil>"
+2026/02/11 16:55:53 INFO 检查标题长度：通过
+2026/02/11 16:55:56 INFO 检查正文长度：通过
+time="2026-02-11T16:55:59+08:00" level=info msg="POST /api/v1/publish  200"
+[GIN] 2026/02/11 - 16:55:59 | 200 | 22.542524458s |             ::1 | POST     "/api/v1/publish"
+time="2026-02-11T17:16:31+08:00" level=info msg="GET /api/v1/login/status ai-report 200"
+[GIN] 2026/02/11 - 17:16:31 | 200 |    6.5468255s |             ::1 | GET      "/api/v1/login/status"
+time="2026-02-11T17:17:32+08:00" level=warning msg="等待页面加载出现问题: {-32000 Execution context was destroyed. }，继续尝试"
+time="2026-02-11T17:17:37+08:00" level=info msg="获取有效图片：test_cover.jpg"
+2026/02/11 17:17:37 INFO 图片已提交上传 index=1 path=test_cover.jpg
+time="2026-02-11T17:18:38+08:00" level=error msg="发布内容失败: title=智能发布测试 小红书上传图片失败: 第1张图片上传超时: 第1张图片上传超时(60s)，请检查网络连接和图片大小"
+time="2026-02-11T17:18:38+08:00" level=error msg="POST /api/v1/publish  500"
+[GIN] 2026/02/11 - 17:18:38 | 500 |          1m9s |             ::1 | POST     "/api/v1/publish"
+time="2026-02-11T17:18:41+08:00" level=warning msg="等待页面加载出现问题: {-32000 Execution context was destroyed. }，继续尝试"
+time="2026-02-11T17:18:47+08:00" level=info msg="获取有效图片：/Users/apple/.openclaw/workspace/test_cover.jpg"
+2026/02/11 17:18:47 INFO 图片已提交上传 index=1 path=/Users/apple/.openclaw/workspace/test_cover.jpg
+2026/02/11 17:18:49 INFO 等待图片上传 current=1 expected=1
+2026/02/11 17:18:49 INFO 图片上传完成 count=1
+time="2026-02-11T17:18:50+08:00" level=info msg="发布内容: title=智能发布测试, images=1, tags=[], schedule=<nil>"
+2026/02/11 17:18:50 INFO 检查标题长度：通过
+2026/02/11 17:18:52 INFO 检查正文长度：通过
+time="2026-02-11T17:18:55+08:00" level=info msg="POST /api/v1/publish  200"
+[GIN] 2026/02/11 - 17:18:55 | 200 | 17.778980083s |             ::1 | POST     "/api/v1/publish"
+time="2026-02-11T17:24:33+08:00" level=info msg="GET /api/v1/login/status ai-report 200"
+[GIN] 2026/02/11 - 17:24:33 | 200 |  5.631662333s |             ::1 | GET      "/api/v1/login/status"
+time="2026-02-11T17:26:43+08:00" level=warning msg="等待页面加载出现问题: {-32000 Execution context was destroyed. }，继续尝试"
+time="2026-02-11T17:26:49+08:00" level=info msg="获取有效图片：/Users/apple/.openclaw/workspace/test_cover.jpg"
+2026/02/11 17:26:49 INFO 图片已提交上传 index=1 path=/Users/apple/.openclaw/workspace/test_cover.jpg
+2026/02/11 17:26:53 INFO 等待图片上传 current=1 expected=1
+2026/02/11 17:26:53 INFO 图片上传完成 count=1
+time="2026-02-11T17:26:54+08:00" level=info msg="发布内容: title=测试标题封面生成, images=1, tags=[], schedule=<nil>"
+2026/02/11 17:26:54 INFO 检查标题长度：通过
+2026/02/11 17:26:56 INFO 检查正文长度：通过
+time="2026-02-11T17:26:59+08:00" level=info msg="POST /api/v1/publish  200"
+[GIN] 2026/02/11 - 17:26:59 | 200 | 19.808978583s |             ::1 | POST     "/api/v1/publish"
+time="2026-02-11T17:33:02+08:00" level=warning msg="等待页面加载出现问题: {-32000 Execution context was destroyed. }，继续尝试"
+time="2026-02-11T17:33:08+08:00" level=info msg="获取有效图片：/Users/apple/.openclaw/workspace/new_cover.jpg"
+2026/02/11 17:33:08 INFO 图片已提交上传 index=1 path=/Users/apple/.openclaw/workspace/new_cover.jpg
+2026/02/11 17:33:13 INFO 等待图片上传 current=1 expected=1
+2026/02/11 17:33:13 INFO 图片上传完成 count=1
+time="2026-02-11T17:33:14+08:00" level=info msg="发布内容: title=封面v2测试, images=1, tags=[], schedule=<nil>"
+2026/02/11 17:33:15 INFO 检查标题长度：通过
+2026/02/11 17:33:17 INFO 检查正文长度：通过
+time="2026-02-11T17:33:20+08:00" level=info msg="POST /api/v1/publish  200"
+[GIN] 2026/02/11 - 17:33:20 | 200 | 21.878848708s |             ::1 | POST     "/api/v1/publish"
+time="2026-02-11T17:36:13+08:00" level=info msg="获取有效图片：/Users/apple/.openclaw/workspace/v3_cover.jpg"
+2026/02/11 17:36:13 INFO 图片已提交上传 index=1 path=/Users/apple/.openclaw/workspace/v3_cover.jpg
+2026/02/11 17:36:18 INFO 等待图片上传 current=1 expected=1
+2026/02/11 17:36:18 INFO 图片上传完成 count=1
+time="2026-02-11T17:36:19+08:00" level=info msg="发布内容: title=封面v3测试-更粗字体, images=1, tags=[], schedule=<nil>"
+2026/02/11 17:36:20 INFO 检查标题长度：通过
+2026/02/11 17:36:22 INFO 检查正文长度：通过
+time="2026-02-11T17:36:25+08:00" level=info msg="POST /api/v1/publish  200"
+[GIN] 2026/02/11 - 17:36:25 | 200 | 20.871069791s |             ::1 | POST     "/api/v1/publish"
+time="2026-02-11T17:37:55+08:00" level=warning msg="等待页面加载出现问题: {-32000 Execution context was destroyed. }，继续尝试"
+time="2026-02-11T17:38:00+08:00" level=info msg="获取有效图片：/Users/apple/.openclaw/workspace/v31_cover.jpg"
+2026/02/11 17:38:00 INFO 图片已提交上传 index=1 path=/Users/apple/.openclaw/workspace/v31_cover.jpg
+2026/02/11 17:38:05 INFO 等待图片上传 current=1 expected=1
+2026/02/11 17:38:05 INFO 图片上传完成 count=1
+time="2026-02-11T17:38:06+08:00" level=info msg="发布内容: title=封面v3.1测试-修复换行, images=1, tags=[], schedule=<nil>"
+2026/02/11 17:38:07 INFO 检查标题长度：通过
+2026/02/11 17:38:09 INFO 检查正文长度：通过
+time="2026-02-11T17:38:12+08:00" level=info msg="POST /api/v1/publish  200"
+[GIN] 2026/02/11 - 17:38:12 | 200 | 21.225838208s |             ::1 | POST     "/api/v1/publish"
+time="2026-02-11T17:40:31+08:00" level=warning msg="等待页面加载出现问题: {-32000 Execution context was destroyed. }，继续尝试"
+time="2026-02-11T17:40:36+08:00" level=info msg="获取有效图片：/Users/apple/.openclaw/workspace/long_cover.jpg"
+2026/02/11 17:40:36 INFO 图片已提交上传 index=1 path=/Users/apple/.openclaw/workspace/long_cover.jpg
+2026/02/11 17:40:39 INFO 等待图片上传 current=1 expected=1
+2026/02/11 17:40:39 INFO 图片上传完成 count=1
+time="2026-02-11T17:40:40+08:00" level=info msg="发布内容: title=长标题测试-两行, images=1, tags=[], schedule=<nil>"
+2026/02/11 17:40:41 INFO 检查标题长度：通过
+2026/02/11 17:40:43 INFO 检查正文长度：通过
+time="2026-02-11T17:40:46+08:00" level=info msg="POST /api/v1/publish  200"
+[GIN] 2026/02/11 - 17:40:46 | 200 | 19.038211125s |             ::1 | POST     "/api/v1/publish"
+time="2026-02-11T17:42:21+08:00" level=warning msg="等待页面加载出现问题: {-32000 Execution context was destroyed. }，继续尝试"
+time="2026-02-11T17:42:27+08:00" level=info msg="获取有效图片：/Users/apple/.openclaw/workspace/fixed_cover.jpg"
+2026/02/11 17:42:27 INFO 图片已提交上传 index=1 path=/Users/apple/.openclaw/workspace/fixed_cover.jpg
+2026/02/11 17:42:31 INFO 等待图片上传 current=1 expected=1
+2026/02/11 17:42:31 INFO 图片上传完成 count=1
+time="2026-02-11T17:42:32+08:00" level=info msg="发布内容: title=修复版-75px字体, images=1, tags=[], schedule=<nil>"
+2026/02/11 17:42:32 INFO 检查标题长度：通过
+2026/02/11 17:42:34 INFO 检查正文长度：通过
+time="2026-02-11T17:42:37+08:00" level=info msg="POST /api/v1/publish  200"
+[GIN] 2026/02/11 - 17:42:37 | 200 | 19.941824625s |             ::1 | POST     "/api/v1/publish"
+time="2026-02-11T17:44:47+08:00" level=warning msg="等待页面加载出现问题: {-32000 Execution context was destroyed. }，继续尝试"
+time="2026-02-11T17:44:53+08:00" level=info msg="获取有效图片：/Users/apple/.openclaw/workspace/precise_cover.jpg"
+2026/02/11 17:44:53 INFO 图片已提交上传 index=1 path=/Users/apple/.openclaw/workspace/precise_cover.jpg
+2026/02/11 17:44:57 INFO 等待图片上传 current=1 expected=1
+2026/02/11 17:44:57 INFO 图片上传完成 count=1
+time="2026-02-11T17:44:58+08:00" level=info msg="发布内容: title=精确换行版-使用getbbox, images=1, tags=[], schedule=<nil>"
+2026/02/11 17:44:59 INFO 检查标题长度：通过
+2026/02/11 17:45:01 INFO 检查正文长度：通过
+time="2026-02-11T17:45:04+08:00" level=info msg="POST /api/v1/publish  200"
+[GIN] 2026/02/11 - 17:45:04 | 200 | 21.277940208s |             ::1 | POST     "/api/v1/publish"
+time="2026-02-11T17:49:58+08:00" level=warning msg="等待页面加载出现问题: {-32000 Execution context was destroyed. }，继续尝试"
+time="2026-02-11T17:50:04+08:00" level=info msg="获取有效图片：/Users/apple/.openclaw/workspace/test_cover.jpg"
+2026/02/11 17:50:04 INFO 图片已提交上传 index=1 path=/Users/apple/.openclaw/workspace/test_cover.jpg
+2026/02/11 17:50:09 INFO 等待图片上传 current=1 expected=1
+2026/02/11 17:50:09 INFO 图片上传完成 count=1
+time="2026-02-11T17:50:10+08:00" level=info msg="发布内容: title=间隔测试, images=1, tags=[], schedule=<nil>"
+2026/02/11 17:50:11 INFO 检查标题长度：通过
+2026/02/11 17:50:13 INFO 检查正文长度：通过
+time="2026-02-11T17:50:16+08:00" level=info msg="POST /api/v1/publish  200"
+[GIN] 2026/02/11 - 17:50:16 | 200 | 21.606204292s |             ::1 | POST     "/api/v1/publish"
+time="2026-02-11T17:52:22+08:00" level=warning msg="等待页面加载出现问题: {-32000 Execution context was destroyed. }，继续尝试"
+time="2026-02-11T17:52:27+08:00" level=info msg="获取有效图片：/Users/apple/.openclaw/workspace/test_cover.jpg"
+2026/02/11 17:52:27 INFO 图片已提交上传 index=1 path=/Users/apple/.openclaw/workspace/test_cover.jpg
+2026/02/11 17:52:33 INFO 等待图片上传 current=1 expected=1
+2026/02/11 17:52:33 INFO 图片上传完成 count=1
+time="2026-02-11T17:52:34+08:00" level=info msg="发布内容: title=精确换行测试, images=1, tags=[], schedule=<nil>"
+2026/02/11 17:52:35 INFO 检查标题长度：通过
+2026/02/11 17:52:37 INFO 检查正文长度：通过
+time="2026-02-11T17:52:40+08:00" level=info msg="POST /api/v1/publish  200"
+[GIN] 2026/02/11 - 17:52:40 | 200 | 22.030814917s |             ::1 | POST     "/api/v1/publish"
+time="2026-02-11T17:57:38+08:00" level=warning msg="等待页面加载出现问题: {-32000 Execution context was destroyed. }，继续尝试"
+time="2026-02-11T17:57:44+08:00" level=info msg="获取有效图片：/Users/apple/.openclaw/workspace/real_cover.jpg"
+2026/02/11 17:57:44 INFO 图片已提交上传 index=1 path=/Users/apple/.openclaw/workspace/real_cover.jpg
+2026/02/11 17:57:49 INFO 等待图片上传 current=1 expected=1
+2026/02/11 17:57:49 INFO 图片上传完成 count=1
+time="2026-02-11T17:57:50+08:00" level=info msg="发布内容: title=为什么你的AI工具总是用不好？, images=1, tags=[], schedule=<nil>"
+2026/02/11 17:57:50 INFO 检查标题长度：通过
+2026/02/11 17:57:52 INFO 检查正文长度：通过
+time="2026-02-11T17:57:55+08:00" level=info msg="POST /api/v1/publish  200"
+[GIN] 2026/02/11 - 17:57:55 | 200 | 21.253781625s |             ::1 | POST     "/api/v1/publish"
+time="2026-02-11T18:09:25+08:00" level=warning msg="等待页面加载出现问题: {-32000 Execution context was destroyed. }，继续尝试"
+time="2026-02-11T18:09:31+08:00" level=info msg="获取有效图片：/Users/apple/.openclaw/workspace/cover.jpg"
+2026/02/11 18:09:31 INFO 图片已提交上传 index=1 path=/Users/apple/.openclaw/workspace/cover.jpg
+2026/02/11 18:09:34 INFO 等待图片上传 current=1 expected=1
+2026/02/11 18:09:34 INFO 图片上传完成 count=1
+time="2026-02-11T18:09:35+08:00" level=info msg="发布内容: title=AI 培训课？就是焦虑税, images=1, tags=[], schedule=<nil>"
+2026/02/11 18:09:36 INFO 检查标题长度：通过
+2026/02/11 18:09:38 INFO 检查正文长度：通过
+time="2026-02-11T18:09:41+08:00" level=info msg="POST /api/v1/publish  200"
+[GIN] 2026/02/11 - 18:09:41 | 200 |  20.18478425s |             ::1 | POST     "/api/v1/publish"
