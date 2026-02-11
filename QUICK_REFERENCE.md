@@ -1,18 +1,34 @@
 # ⚡ 快速参考
 
-## 核心要求：数据 + 事件
+## 核心要求
 
-每个内容必须有：
-- ✅ 具体数据（数字、百分比、金额）
-- ✅ 数据来源（财报、报告、新闻）
-- ✅ 最新事件（1周内）
-- ✅ 事件出处（媒体、官方）
+### 内容要求
+- ✅ 数据支撑（数字、来源）
+- ✅ 事件佐证（1周内、媒体出处）
+- ✅ 每个观点有依据
+
+### 标题要求
+- ✅ 有吸引力（数字+痛点）
+- ✅ 口语化（不是官方腔）
+- ✅ 引发好奇（能点进来看）
+
+## 标题吸引力公式
+
+```
+数字 + 痛点/好奇 = 吸引力
+```
+
+| 平淡 ❌ | 吸引 ✅ |
+|---------|---------|
+| AI 公司亏损 | AI 烧钱有多恐怖 |
+| Prompt 技巧 | 为什么 Prompt 没效果 |
+| AI 绘画争议 | AI 绘画是偷窃吗？ |
 
 ## 发布前检查
 
-- [ ] 有数据支撑
+- [ ] 有具体数据
 - [ ] 有事件佐证
-- [ ] 争议点清晰
+- [ ] 标题有吸引力
 - [ ] 封面无标签
 - [ ] 无 AI 特征
 
@@ -20,7 +36,7 @@
 
 ```bash
 cd /Users/apple/.openclaw/skills/xiaohongshu-mcp
-python3 publish_controversy.py
+python3 publish_*.py
 ```
 
 ## Git 提交
@@ -28,16 +44,3 @@ python3 publish_controversy.py
 ```bash
 git add . && git commit -m "feat: 更新内容" && git push
 ```
-
-## 检查状态
-
-```bash
-curl -s http://localhost:18060/api/v1/login/status
-tail -5 mcp.log
-```
-
-## 核心文件
-
-- `BEST_PRACTICE.md` - 完整指南
-- `STRATEGY.md` - 运营策略（含数据要求）
-- `publish_controversy.py` - 发布脚本
