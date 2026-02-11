@@ -1,91 +1,124 @@
 ---
 name: xiaohongshu-mcp
 description: >
-  Automate Xiaohongshu (RedNote) content operations using a Python client for the xiaohongshu-mcp server.
-  Use for: (1) Publishing image, text, and video content, (2) Searching for notes and trends,
-  (3) Analyzing post details and comments, (4) Managing user profiles and content feeds.
-  Triggers: xiaohongshu automation, rednote content, publish to xiaohongshu, xiaohongshu search, social media management.
+  Xiaohongshu MCP Skill - Based on xpzouying/xiaohongshu-mcp (8.4k+ stars). Features:
+  (1) Login with Feishu notification, (2) Search notes and trends,
+  (3) Publish image/text/video content, (4) Interact with posts (likes, comments).
+  Built-in login fix for Xiaohongshu page changes.
+  Triggers: xiaohongshu, rednote, 小红书 automation.
 ---
 
-# Xiaohongshu MCP Skill (with Python Client)
+# Xiaohongshu MCP Skill
 
-Automate content operations on Xiaohongshu (小红书) using a bundled Python script that interacts with the `xpzouying/xiaohongshu-mcp` server (8.4k+ stars).
+> 基于 [xpzouying/xiaohongshu-mcp](https://github.com/xpzouying/xiaohongshu-mcp) 构建
 
-**Project:** [xpzouying/xiaohongshu-mcp](https://github.com/xpzouying/xiaohongshu-mcp)
+## 概述
 
-## 1. Local Server Setup
+本 Skill 提供小红书完整自动化解决方案，包含登录修复（小红书登录页面变更）、飞书通知集成。
 
-This skill requires the `xiaohongshu-mcp` server to be running on your local machine.
+**核心功能：**
+- 🔐 登录管理（支持截图发送到飞书）
+- 🔍 搜索内容
+- 📄 获取笔记详情
+- 📤 发布图文/视频
+- 👥 互动操作
 
-### Step 1: Download Binaries
+**来源：**
+- MCP 服务器: [xpzouying/xiaohongshu-mcp](https://github.com/xpzouying/xiaohongshu-mcp) (8.4k+ stars)
 
-Download the appropriate binaries for your system from the [GitHub Releases](https://github.com/xpzouying/xiaohongshu-mcp/releases) page.
+## 安装
 
-| Platform | MCP Server | Login Tool |
-| -------- | ---------- | ---------- |
-| macOS (Apple Silicon) | `xiaohongshu-mcp-darwin-arm64` | `xiaohongshu-login-darwin-arm64` |
-| macOS (Intel) | `xiaohongshu-mcp-darwin-amd64` | `xiaohongshu-login-darwin-amd64` |
-| Windows | `xiaohongshu-mcp-windows-amd64.exe` | `xiaohongshu-login-windows-amd64.exe` |
-| Linux | `xiaohongshu-mcp-linux-amd64` | `xiaohongshu-login-linux-amd64` |
+### 方式1：一键安装（推荐）
 
-Grant execute permission to the downloaded files:
-```shell
-chmod +x xiaohongshu-mcp-darwin-arm64 xiaohongshu-login-darwin-arm64
+```bash
+git clone https://github.com/tclawde/xiaohongshu-mcp-skill.git
+cd xiaohongshu-mcp-skill
+bash install.sh
 ```
 
-### Step 2: Login (First Time Only)
+### 方式2：手动安装
 
-Run the login tool. It will open a browser window with a QR code. Scan it with your Xiaohongshu mobile app.
+```bash
+# 1. 克隆 Skill
+git clone https://github.com/tclawde/xiaohongshu-mcp-skill.git ~/.openclaw/skills/xiaohongshu-mcp
 
-```shell
-./xiaohongshu-login-darwin-arm64
+# 2. 安装 MCP 服务器
+cd ~/.openclaw/skills/xiaohongshu-mcp
+bash install.sh
+
+# 3. 安装依赖
+pip3 install requests playwright
+playwright install chromium
 ```
 
-> **Important**: Do not log into the same Xiaohongshu account on any other web browser, as this will invalidate the server's session.
+## 使用
 
-### Step 3: Start the MCP Server
+### 1. 登录
 
-Run the MCP server in a separate terminal window. It will run in the background.
+```bash
+# 本地登录
+bash xhs_login.sh
 
-```shell
-# Run in headless mode (recommended)
-./xiaohongshu-mcp-darwin-arm64
-
-# Or, run with a visible browser for debugging
-./xiaohongshu-mcp-darwin-arm64 -headless=false
+# 登录并发送到飞书
+bash xhs_login.sh --notify
 ```
 
-The server will be available at `http://localhost:18060`.
+> **登录修复**：小红书更新了登录页面，本 Skill 已修复从探索页面点击登录按钮。
 
-## 2. Using the Skill
+### 2. 启动 MCP 服务器
 
-This skill includes a Python client (`scripts/xhs_client.py`) to interact with the local server. You can use it directly from the shell.
+```bash
+cd ~/.openclaw/skills/xiaohongshu-mcp
+./xiaohongshu-mcp-darwin-arm64 &
+```
 
-### Available Commands
+### 3. 使用功能
 
-| Command | Description | Example |
-| --- | --- | --- |
-| `status` | Check login status | `python scripts/xhs_client.py status` |
-| `search <keyword>` | Search for notes | `python scripts/xhs_client.py search "咖啡"` |
-| `detail <id> <token>` | Get note details | `python scripts/xhs_client.py detail "note_id" "xsec_token"` |
-| `feeds` | Get recommended feed | `python scripts/xhs_client.py feeds` |
-| `publish <title> <content> <images>` | Publish a note | `python scripts/xhs_client.py publish "Title" "Content" "url1,url2"` |
+```bash
+# 检查状态
+python3 scripts/xhs_client.py status
 
-### Example Workflow: Market Research
+# 搜索
+python3 scripts/xhs_client.py search "咖啡"
 
-1.  **Check Status**: First, ensure the server is running and you are logged in.
-    ```shell
-    python ~/clawd/skills/xiaohongshu-mcp/scripts/xhs_client.py status
-    ```
+# 发布
+python3 scripts/xhs_client.py publish "标题" "内容" "图片URL"
+```
 
-2.  **Search for a Keyword**: Find notes related to your research topic. The output will include the `feed_id` and `xsec_token` needed for the next step.
-    ```shell
-    python ~/clawd/skills/xiaohongshu-mcp/scripts/xhs_client.py search "户外电源"
-    ```
+## 文件结构
 
-3.  **Get Note Details**: Use the `feed_id` and `xsec_token` from the search results to get the full content and comments of a specific note.
-    ```shell
-    python ~/clawd/skills/xiaohongshu-mcp/scripts/xhs_client.py detail "64f1a2b3c4d5e6f7a8b9c0d1" "security_token_here"
-    ```
+```
+xiaohongshu-mcp-skill/
+├── SKILL.md              # 本文档
+├── README.md             # 中文文档
+├── SOP.md                # 详细指南
+├── install.sh            # 安装脚本
+├── xhs_login.sh         # 一键登录
+└── scripts/
+    ├── xhs_client.py    # Python 客户端
+    └── xhs_login_sop.py # 登录 SOP（修复版）
+```
 
-4.  **Analyze**: Review the note's content, comments, and engagement data to gather insights.
+## 常见问题
+
+### MCP 服务器从哪里获取？
+
+```bash
+# install.sh 会自动下载
+# 或手动下载：
+curl -L -o xiaohongshu-mcp-darwin-arm64 \
+  https://github.com/xpzouying/xiaohongshu-mcp/releases/download/v0.0.8/xiaohongshu-mcp-darwin-arm64
+```
+
+### 登录失败？
+
+小红书可能更新了登录页面，使用本 Skill 的修复版登录：
+
+```bash
+bash xhs_login.sh --notify
+```
+
+## 致谢
+
+- [xpzouying/xiaohongshu-mcp](https://github.com/xpzouying/xiaohongshu-mcp) - MCP 服务器核心
+- [OpenClaw](https://github.com/openclaw/openclaw) - AI Agent 框架
