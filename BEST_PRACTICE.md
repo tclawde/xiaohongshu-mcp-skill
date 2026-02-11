@@ -224,3 +224,34 @@ A: 确保每次改动后立即 `git add && commit && push`
 ---
 
 **遵循此文档，确保每次操作规范、信息不丢失。**
+
+---
+
+## ⏰ 定时任务配置
+
+已配置以下 cron 任务（Asia/Shanghai 时区）：
+
+| 时间 | 任务 | 说明 |
+|------|------|------|
+| 7:00 | xhs-hot-morning | 搜索最新 AI 热点 |
+| 8:00 | xhs-content-morning | 创作原理篇内容 |
+| 9:00 | xhs-publish-morning | 发布并记录 |
+| 13:00 | xhs-hot-noon | 追踪午间热点 |
+| 14:00 | xhs-content-noon | 创作数据篇内容 |
+| 15:00 | xhs-publish-noon | 发布并记录 |
+| 19:00 | xhs-hot-evening | 追踪晚间热点 |
+| 20:00 | xhs-content-evening | 创作热点篇内容 |
+| 21:00 | xhs-publish-evening | 发布并记录 |
+| 22:00 | xhs-git-push | Git 提交并推送 |
+
+### 查看定时任务
+
+```bash
+openclaw cron list
+```
+
+### 手动运行任务
+
+```bash
+openclaw cron run <job-id>
+```
