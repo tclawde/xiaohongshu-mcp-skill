@@ -7,11 +7,26 @@
     "topic": "美院学生用AI工具",
     "controversy_point": "批判AI让年轻人不学基本功",
     "response": {
-      "likes": 0,
+      "likes": 2,
+      "comments": 6,
+      "shares": 1,
+      "sentiment": "pending"
+    },
+    "notes": "首次发布，成功通过 MCP API 发布"
+  },
+  {
+    "date": "2026-02-11",
+    "time": "20:33",
+    "type": "观点篇",
+    "title": "AI正在毁掉这一代年轻人？",
+    "topic": "AI对职场和技能的影响",
+    "controversy_point": "AI让年轻人失去基本功和思考能力",
+    "response": {
+      "likes": 1,
       "comments": 0,
       "shares": 0,
       "sentiment": "pending"
     },
-    "notes": "首次发布，成功通过 MCP API 发布"
+    "notes": "通过 MCP 发布成功，争议性话题"
   }
 ]
