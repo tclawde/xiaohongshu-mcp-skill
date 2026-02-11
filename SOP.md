@@ -397,12 +397,124 @@ python3 xhs_client.py login
 
 ---
 
+## 🎯 最佳实践总结（v2.3 新增）
+
+基于 2026-02-11 实操经验总结。
+
+### 完整发布流程（已验证）
+
+```bash
+# 步骤 1: 启动 MCP 服务器（在 skill 目录）
+cd /Users/apple/.openclaw/skills/xiaohongshu-mcp
+./xiaohongshu-mcp-darwin-arm64 &
+
+# 步骤 2: 登录并刷新 cookies
+python3 scripts/xhs_login_sop.py
+
+# 步骤 3: 登录成功后，复制 cookies 到正确位置
+cp ~/.openclaw/workspace/cookies.json /tmp/cookies.json
+cp ~/.openclaw/workspace/cookies.json ./cookies.json
+
+# 步骤 4: 重启 MCP 服务器加载新 cookies
+pkill -f xiaohongshu-mcp
+sleep 2
+./xiaohongshu-mcp-darwin-arm64 &
+sleep 4
+
+# 步骤 5: 验证登录状态
+curl -s http://localhost:18060/api/v1/login/status
+# 预期输出: {"success":true,"data":{"is_logged_in":true,...}}
+
+# 步骤 6: 发布内容
+python3 publish_direct.py
+# 或直接调用 API:
+# curl -X POST http://localhost:18060/api/v1/publish \
+#   -H "Content-Type: application/json" \
+#   -d '{"title":"标题","content":"内容","images":["/path/to/image.jpg"]}'
+```
+
+### 关键要点
+
+| 步骤 | 要点 | 常见错误 |
+|------|------|---------|
+| **MCP 工作目录** | 在 `/Users/apple/.openclaw/skills/xiaohongshu-mcp` 启动 | 在其他目录启动导致 cookies 路径错误 |
+| **cookies 位置** | 需要复制到 3 个位置 | 只复制一个位置导致 MCP 读取失败 |
+| **服务器重启** | 每次更新 cookies 后必须重启 MCP | 忘记重启导致登录状态不更新 |
+| **登录验证** | 用 `curl` 直接验证，不要用 Python 脚本 | Python 脚本会错误地尝试重新登录 |
+| **发布参数** | 必须提供图片（即使测试图） | 不传图片参数导致 400 错误 |
+
+### Cookies 位置清单
+
+```bash
+# 每次登录成功后，执行：
+cp ~/.openclaw/workspace/cookies.json /tmp/cookies.json
+cp ~/.openclaw/workspace/cookies.json /Users/apple/.openclaw/skills/xiaohongshu-mcp/cookies.json
+
+# MCP 会从以下位置读取：
+# 1. /tmp/cookies.json
+# 2. ~/.openclaw/workspace/cookies.json
+# 3. 当前工作目录/cookies.json
+```
+
+### 快速验证命令
+
+```bash
+# 1. 检查 MCP 服务器
+curl -s http://localhost:18060/api/v1/login/status
+# ✅ 期望: {"success":true,"data":{"is_logged_in":true,...}}
+
+# 2. 检查 cookies 文件
+ls -la ~/.openclaw/workspace/cookies.json /tmp/cookies.json
+
+# 3. 检查 MCP 日志
+tail -5 /Users/apple/.openclaw/skills/xiaohshu-mcp/mcp.log
+```
+
+### 故障快速恢复
+
+```bash
+# 问题：登录状态不正确
+# 解决：
+pkill -f xiaohongshu-mcp
+cp ~/.openclaw/workspace/cookies.json /tmp/cookies.json
+cd /Users/apple/.openclaw/skills/xiaohongshu-mcp
+./xiaohongshu-mcp-darwin-arm64 &
+sleep 4
+curl -s http://localhost:18060/api/v1/login/status
+```
+
+### 发布命令模板
+
+```bash
+# 准备图片（任选一种方式）
+# 方式1: 下载测试图
+curl -sL "https://picsum.photos/600/400" -o test_cover.jpg
+
+# 方式2: 使用截图脚本
+bash ~/clawd/skills/screenshot-to-feishu/scripts/screenshot-to-feishu.sh
+
+# 发布（使用 skill 目录的脚本）
+cd /Users/apple/.openclaw/skills/xiaohongshu-mcp
+python3 publish_direct.py
+```
+
+### 已验证的发布脚本
+
+| 脚本 | 用途 | 使用方式 |
+|------|------|---------|
+| `publish_direct.py` | 直接发布内容（推荐） | `python3 publish_direct.py` |
+| `scripts/xhs_client.py publish` | CLI 方式发布 | `python3 scripts/xhs_client.py publish "标题" "内容" "图片路径"` |
+| `create_content.py` | 创作争议性内容 | `python3 create_content.py` |
+
+---
+
 ## 📚 相关资源
 
 - **项目地址**: https://github.com/xpzouying/xiaohongshu-mcp
 - **OpenClaw Skill**: ~/clawd/skills/xiaohongshu-mcp/
 - **SOP 文档**: ~/clawd/skills/xiaohongshu-mcp/SOP.md
-- **一键登录脚本**: ~/scripts/xhs_login.sh
+- **策略文档**: ~/clawd/skills/xiaohongshu-mcp/STRATEGY.md
+- **一键登录脚本**: ~/clawd/skills/xiaohongshu-mcp/xhs_login.sh
 
 ---
 
@@ -410,6 +522,7 @@ python3 xhs_client.py login
 
 | 版本 | 日期 | 更新内容 |
 |------|------|---------|
+| v2.3 | 2026-02-11 | **添加最佳实践总结**，修复登录脚本自动轮询问题，添加发布脚本 |
 | v2.2 | 2026-02-09 | 添加一键登录脚本、优化登录流程文档 |
 | v2.1 | 2026-02-09 | 添加登录流程详细说明、截图发送到飞书 SOP |
 | v2.0 | 2026-02-09 | 添加自动登录检测功能 |
@@ -417,5 +530,5 @@ python3 xhs_client.py login
 
 ---
 
-*最后更新: 2026-02-09*
+*最后更新: 2026-02-11*
 *维护者: TClawE 🦀*

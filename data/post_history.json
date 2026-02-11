@@ -1,1 +1,17 @@
-[]
+[
+  {
+    "date": "2026-02-11",
+    "time": "16:55",
+    "type": "热点篇",
+    "title": "美院学生都在用AI？我就笑了",
+    "topic": "美院学生用AI工具",
+    "controversy_point": "批判AI让年轻人不学基本功",
+    "response": {
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "sentiment": "pending"
+    },
+    "notes": "首次发布，成功通过 MCP API 发布"
+  }
+]
