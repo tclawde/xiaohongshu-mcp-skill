@@ -172,3 +172,13 @@ time="2026-02-11T18:31:54+08:00" level=info msg="发布内容: title=一组数�
 2026/02/11 18:31:56 INFO 检查正文长度：通过
 time="2026-02-11T18:31:59+08:00" level=info msg="POST /api/v1/publish  200"
 [GIN] 2026/02/11 - 18:31:59 | 200 | 23.516362334s |             ::1 | POST     "/api/v1/publish"
+time="2026-02-11T18:45:55+08:00" level=warning msg="等待页面加载出现问题: {-32000 Execution context was destroyed. }，继续尝试"
+time="2026-02-11T18:46:00+08:00" level=info msg="获取有效图片：/Users/apple/.openclaw/workspace/job_cover.jpg"
+2026/02/11 18:46:00 INFO 图片已提交上传 index=1 path=/Users/apple/.openclaw/workspace/job_cover.jpg
+2026/02/11 18:46:06 INFO 等待图片上传 current=1 expected=1
+2026/02/11 18:46:06 INFO 图片上传完成 count=1
+time="2026-02-11T18:46:07+08:00" level=info msg="发布内容: title=AI 越火，这群人越惨, images=1, tags=[], schedule=<nil>"
+2026/02/11 18:46:08 INFO 检查标题长度：通过
+2026/02/11 18:46:10 INFO 检查正文长度：通过
+time="2026-02-11T18:46:13+08:00" level=info msg="POST /api/v1/publish  200"
+[GIN] 2026/02/11 - 18:46:13 | 200 | 21.632368041s |             ::1 | POST     "/api/v1/publish"

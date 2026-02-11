@@ -1,7 +1,7 @@
-# 🏆 小红书运营最佳实践 v1.0
+# 🏆 小红书运营最佳实践 v2.0
 
-> **最后更新**: 2026-02-11
-> **核心原则**: 人设统一、操作规范、信息不丢失
+> **最后更新**: 2026-02-11 18:50
+> **核心原则**: 数据支撑 + 吸引力标题 + 定时发布
 
 ---
 
@@ -15,77 +15,182 @@
 
 ---
 
-## 🚫 发布前自检清单
+## 📋 每日发布任务
 
-### 内容检查
-- [ ] 有明确的争议点
-- [ ] 反直觉观点清晰
-- [ ] 无 "AI 生成的 emoji" 序列
-- [ ] 无 "你怎么看" 类引导语
-- [ ] 无 "赋能"、"迭代" 等黑话
-- [ ] 口语化表达，有真实语气
+| 时间 | 任务 | 维度 |
+|------|------|------|
+| 9:00 | 发布 | 数据篇（行业亏损/财报） |
+| 15:00 | 发布 | 事件篇（裁员/政策/新闻） |
+| 21:00 | 发布 | 观点篇（争议/分析） |
+| 22:00 | 总结 | Git 提交 + 复盘 |
 
-### 封面检查
+---
+
+## ✅ 发布前自检清单
+
+### 内容要求（必须全部满足）
+- [ ] 有具体数据（数字、百分比、金额）
+- [ ] 有数据来源（财报、报告、新闻）
+- [ ] 有最新事件（1周内为佳）
+- [ ] 有事件出处（媒体、官方）
+- [ ] 每个观点有数据和事件支撑
+
+### 标题要求
+- [ ] 有吸引力（数字+痛点/好奇）
+- [ ] 口语化而非官方腔
+- [ ] 能引发好奇，让人想点进来看
+- [ ] 一行能读完，不太长
+
+### 封面要求
 - [ ] 只显示标题
 - [ ] 无底部标签
 - [ ] 字体大小合适
 - [ ] 换行不超边界
 
-### 流程检查
-- [ ] 使用 `publish_*.py` 脚本发布
-- [ ] 记录到 `data/post_history.json`
-- [ ] 封面已保存到 `/Users/apple/.openclaw/workspace/`
+### 禁止项
+- [ ] 无数据的空喊观点
+- [ ] AI 生成的 emoji 序列
+- [ ] "你怎么看" 类引导语
+- [ ] "赋能"、"迭代" 等黑话
+- [ ] 太完美的语法和措辞
 
 ---
 
-## 📋 标准发布流程
+## 🎯 标题吸引力原则
 
-### 方式 1：争议性内容模板
+### 吸引力公式
+```
+数字 + 痛点/好奇 = 吸引力
+```
 
+### 标题对比
+
+| 平淡 ❌ | 有吸引力 ✅ |
+|---------|------------|
+| AI 公司亏损 | AI 越火，这群人越惨 |
+| AI 绘画争议 | AI 绘画是偷窃吗？ |
+| Prompt 技巧 | 为什么 Prompt 没效果？ |
+| 深度学习原理 | 深度学习不是魔法 |
+
+### 吸引力技巧
+
+| 技巧 | 示例 |
+|------|------|
+| 引发好奇 | "一组数据告诉你..." |
+| 数字冲击 | "亏掉 1000 亿" |
+| 人群痛点 | "这群人越惨" |
+| 反问 | "AI 真的能赚钱吗？" |
+
+---
+
+## 📊 内容模板
+
+### 数据篇结构
+```
+1. 亮数据：具体数字 + 来源
+2. 算细账：怎么得出这个数字
+3. 挖背景：为什么会有这个数据
+4. 翻旧账：历史对比
+5. 下结论：这个数据说明了什么
+```
+
+### 事件篇结构
+```
+1. 述事件：什么时候、谁、做了什么
+2. 找数据：这个事件相关的数字
+3. 挖细节：事件的来龙去脉
+4. 关联其他：类似事件
+5. 下结论：说明了什么趋势
+```
+
+### 观点篇结构
+```
+1. 开头：用一个日常例子引入
+2. 转折：揭示背后的"真相"
+3. 解释：用大白话说清楚原理
+4. 数据支撑：引用相关数据
+5. 结论：有态度的吐槽
+```
+
+---
+
+## 📁 发布脚本清单
+
+| 脚本 | 用途 |
+|------|------|
+| `publish_*.py` | 通用发布脚本 |
+| `publish_data.py` | 数据篇模板 |
+| `publish_viral.py` | 热点篇模板 |
+| `publish_job.py` | 裁员/职场篇 |
+
+### 使用方式
 ```bash
 cd /Users/apple/.openclaw/skills/xiaohongshu-mcp
 
-# 编辑发布脚本
-vim publish_controversy.py
-
-# 运行发布
-python3 publish_controversy.py
-```
-
-### 方式 2：curl 直接发布
-
-```bash
-# 封面路径
-COVER="/Users/apple/.openclaw/workspace/cover.jpg"
+# 编辑内容
+vim publish_data.py
 
 # 发布
-curl -s -X POST http://localhost:18060/api/v1/publish \
-  -H "Content-Type: application/json" \
-  -d '{
-    "title": "你的标题",
-    "content": "你的正文",
-    "images": ["'"$COVER"'"]
-  }'
+python3 publish_data.py
 ```
 
 ---
 
-## 📁 核心文件清单
+## 📝 发布记录
 
-| 文件 | 路径 | 作用 |
-|------|------|------|
-| **STRATEGY.md** | `/xiaohongshu-mcp/STRATEGY.md` | 运营策略（完整版） |
-| **封面生成器** | `/title-cover-generator/` | 自动生成封面 |
-| **发布脚本** | `/xiaohongshu-mcp/publish_controversy.py` | 争议内容发布 |
-| **历史记录** | `/xiaohongshu-mcp/data/post_history.json` | 发布历史 |
+每次发布后添加到 `data/post_history.json`：
+
+```json
+{
+  "date": "2026-02-11",
+  "time": "18:46",
+  "type": "event",
+  "title": "AI 越火，这群人越惨",
+  "data_point": "Salesforce 裁员 8000 人",
+  "source": "Bloomberg, The Information, 路透社",
+  "response": {
+    "likes": 0,
+    "comments": 0,
+    "shares": 0
+  },
+  "notes": "数据详实，观点清晰"
+}
+```
 
 ---
 
-## ⚠️ 防止信息丢失
+## ⏰ 定时任务
 
-### Git 提交规范
+### 当前配置（Asia/Shanghai）
 
-**每次更新后必须执行：**
+| 时间 | 任务 | 状态 |
+|------|------|------|
+| 7:00 | 热点追踪 | 已配置 |
+| 8:00 | 内容创作（原理篇） | 已配置 |
+| 9:00 | 发布 + 记录 | 已配置 |
+| 13:00 | 热点追踪 | 已配置 |
+| 14:00 | 内容创作（数据篇） | 已配置 |
+| 15:00 | 发布 + 记录 | 已配置 |
+| 19:00 | 热点追踪 | 已配置 |
+| 20:00 | 内容创作（观点篇） | 已配置 |
+| 21:00 | 发布 + 记录 | 已配置 |
+| 22:00 | Git 提交 + 复盘 | 已配置 |
+
+### 查看任务
+```bash
+openclaw cron list
+```
+
+### 手动运行
+```bash
+openclaw cron run <job-id>
+```
+
+---
+
+## 🔧 Git 操作规范
+
+**每日必须执行**：
 ```bash
 cd /Users/apple/.openclaw/skills/xiaohongshu-mcp
 
@@ -96,57 +201,32 @@ git status
 git add .
 
 # 3. 提交（写清楚内容）
-git commit -m "feat: 新增XX内容
+git commit -m "feat: 发布 AI 裁员内容
 
-- 封面样式调整
-- 内容策略更新"
+- 数据：Salesforce 裁员 8000 人
+- 来源：Bloomberg、The Information
+- 观点：AI 不是让人失业..."
 
 # 4. 推送
 git push origin main
 ```
 
-### 关键命令速查
-
-```bash
-# 检查 MCP 状态
-curl -s http://localhost:18060/api/v1/login/status
-
-# 查看最近日志
-tail -10 /Users/apple/.openclaw/skills/xiaohongshu-mcp/mcp.log
-
-# 查看 Git 提交历史
-git log --oneline -10
-```
-
 ---
 
-## 🎨 封面生成器使用
+## 🎨 封面生成器
 
-### 独立使用
-
+### 使用
 ```bash
 cd /Users/apple/.openclaw/workspace/title-cover-generator
 
 # 生成封面
 python3 generate.py "你的标题"
 
-# 输出位置
+# 输出
 /tmp/title_cover.jpg
 ```
 
-### 集成使用
-
-```python
-import sys
-sys.path.insert(0, "/Users/apple/.openclaw/workspace/title-cover-generator")
-from generate import create_title_cover
-
-# 生成封面
-create_title_cover("标题", output_path="/Users/apple/.openclaw/workspace/cover.jpg")
-```
-
-### 封面规范
-
+### 规范
 | 项目 | 要求 |
 |------|------|
 | 比例 | 9:16 (900x1600) |
@@ -158,46 +238,7 @@ create_title_cover("标题", output_path="/Users/apple/.openclaw/workspace/cover
 
 ---
 
-## 📊 发布记录模板
-
-每次发布后，添加到 `data/post_history.json`：
-
-```json
-{
-  "date": "2026-02-11",
-  "time": "18:09",
-  "type": "controversy",
-  "title": "AI 培训课？就是焦虑税",
-  "controversy_point": "3999 课程是割韭菜",
-  "response": {
-    "likes": 0,
-    "comments": 0,
-    "shares": 0,
-    "sentiment": "待观察"
-  },
-  "notes": "结合热点话题"
-}
-```
-
----
-
-## 🔧 常见问题处理
-
-### Q: MCP API 返回空响应
-A: MCP 仍在处理，等待 20-60 秒后重试
-
-### Q: 封面超出边界
-A: 字体改为 75px，或减少标题字数
-
-### Q: 发布太频繁被限制
-A: 间隔至少 5 分钟
-
-### Q: Git 提交丢失
-A: 确保每次改动后立即 `git add && commit && push`
-
----
-
-## 📦 GitHub 仓库
+## 🔗 GitHub 仓库
 
 | 项目 | 地址 |
 |------|------|
@@ -206,52 +247,37 @@ A: 确保每次改动后立即 `git add && commit && push`
 
 ---
 
-## ✅ 每日操作清单
+## ⚠️ 常见问题处理
+
+### Q: MCP API 返回空响应
+A: MCP 仍在处理，等待 20-60 秒后重试
+
+### Q: 发布太频繁被限制
+A: 间隔至少 5 分钟
+
+### Q: 标题没有吸引力
+A: 参考"标题吸引力原则"，用数字+痛点公式
+
+### Q: 内容太单薄
+A: 确保每个观点都有数据和事件支撑
+
+---
+
+## ✅ 快速参考
 
 ```
-□ 7:00   搜索热点 (python3 scripts/xhs_client.py search "AI")
-□ 8:00   创作内容
-□ 9:00   发布并记录
-□ 13:00  追踪热点
-□ 14:00  创作内容
-□ 15:00  发布并记录
-□ 19:00  追踪热点
-□ 20:00  创作内容
-□ 21:00  发布并记录
-□ 22:00  Git 提交并推送
+发布前检查：
+□ 有具体数据
+□ 有来源出处
+□ 标题有吸引力
+□ 封面无标签
+□ 无 AI 特征
+
+发布后操作：
+□ 记录到 post_history.json
+□ Git 提交并推送
 ```
 
 ---
 
-**遵循此文档，确保每次操作规范、信息不丢失。**
-
----
-
-## ⏰ 定时任务配置
-
-已配置以下 cron 任务（Asia/Shanghai 时区）：
-
-| 时间 | 任务 | 说明 |
-|------|------|------|
-| 7:00 | xhs-hot-morning | 搜索最新 AI 热点 |
-| 8:00 | xhs-content-morning | 创作原理篇内容 |
-| 9:00 | xhs-publish-morning | 发布并记录 |
-| 13:00 | xhs-hot-noon | 追踪午间热点 |
-| 14:00 | xhs-content-noon | 创作数据篇内容 |
-| 15:00 | xhs-publish-noon | 发布并记录 |
-| 19:00 | xhs-hot-evening | 追踪晚间热点 |
-| 20:00 | xhs-content-evening | 创作热点篇内容 |
-| 21:00 | xhs-publish-evening | 发布并记录 |
-| 22:00 | xhs-git-push | Git 提交并推送 |
-
-### 查看定时任务
-
-```bash
-openclaw cron list
-```
-
-### 手动运行任务
-
-```bash
-openclaw cron run <job-id>
-```
+**遵循此文档，确保每次发布符合策略！**
