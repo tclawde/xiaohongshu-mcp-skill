@@ -1,5 +1,18 @@
 # 更新日志
 
+## v1.5.0 (2026-02-11)
+
+### 新增
+- ✅ 新增运营策略文档 `STRATEGY.md`
+  - AI 反对者/民科定位
+  - 每天 3 篇文章（原理篇、数据篇、热点篇）
+  - 去 AI 化风格要求
+- ✅ 新增内容生成器 `scripts/xhs_content_generator.py`
+- ✅ Cron 策略配置 `data/xhs_cron_strategy.json`
+
+### 改进
+- 📝 更新 CHANGELOG 维护
+
 ## v1.4.0 (2026-02-11)
 
 ### 新增
