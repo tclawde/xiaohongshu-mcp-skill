@@ -31,7 +31,7 @@ PRINCIPLE_CONTROVERSY = [
 深度学习做的事情就是：给定一堆输入输出，找出让它们对应起来的数学公式。
 
 这不是智能，这是高级计算器。""",
-        "controversy": "把深度学习说成是"AI"是偷换概念"
+        "controversy": "把深度学习说成是AI是偷换概念"
     },
     {
         "title": "AI 不理解任何东西，它只是在查表",
@@ -383,8 +383,8 @@ def generate_custom_content(topic):
     # 争议性开场
     openers = [
         f"关于「{topic}」，网上一片叫好。",
-        f"都说「{topic」是未来。",
-        f"最近「{topic」很火对吧？",
+        f"都说topic是未来。",
+        f"最近「{topic}」很火对吧？",
     ]
     
     # 反直觉观点
