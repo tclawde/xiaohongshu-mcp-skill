@@ -1,36 +1,13 @@
 ---
 name: xiaohongshu-mcp
-description: >
-  Xiaohongshu MCP Skill - Full automation solution with login fix.
-  Features: (1) Login management, (2) Search, publish, interact,
-  (3) Complete MCP protocol support (13 tools), (4) Comment strategy.
-  Built-in Feishu notification, iflow integration.
-  Triggers: xiaohongshu, rednote, 小红书 automation.
+description: "Automate Xiaohongshu (RedNote/小红书) via MCP: search posts by keyword, publish notes with cover images, reply to and like comments, collect posts, check login status, and manage cookies. Use when the user wants to post content to Xiaohongshu, search RedNote feeds, interact with 小红书 comments, automate rednote publishing workflows, or manage a Xiaohongshu account programmatically."
 ---
 
 # Xiaohongshu MCP Skill
 
 > 基于 [xpzouying/xiaohongshu-mcp](https://github.com/xpzouying/xiaohongshu-mcp) 构建
 
-## 🎯 核心功能
-
-本 Skill 提供小红书完整自动化解决方案：
-
-| 功能 | 状态 | 说明 |
-|------|------|------|
-| 🔐 登录管理 | ✅ 已测试 | 支持截图发送到飞书 |
-| 🔍 搜索内容 | ✅ 已测试 | 关键词搜索、筛选 |
-| 📄 获取详情 | ✅ 已测试 | 含评论列表 |
-| 📤 发布图文 | ✅ 已测试 | 封面生成器集成 |
-| 👍 点赞 | ✅ 已测试 | 单条点赞 |
-| 💬 发表评论 | ✅ 已测试 | 主评论 |
-| ↩️ 回复评论 | ✅ 已测试 | 子评论回复 |
-| ⭐ 收藏 | ✅ 已测试 | 收藏/取消 |
-| 🔄 获取推荐 | ✅ 已测试 | 首页 feeds |
-
-**共 13 个 MCP 工具全部可用！**
-
-## 🚀 快速开始
+## Quick Start
 
 ### 1. 登录
 
@@ -42,11 +19,27 @@ bash xhs_login.sh --notify
 bash xhs_login.sh
 ```
 
+Verify login succeeded before proceeding:
+
+```bash
+python3 scripts/xhs_client.py status
+```
+
+If status shows logged out, re-run `bash xhs_login.sh` and scan the QR code.
+
 ### 2. 启动 MCP 服务器
 
 ```bash
 ./xiaohongshu-mcp-darwin-arm64 &
 ```
+
+Confirm the server is running:
+
+```bash
+curl -s -o /dev/null -w "%{http_code}" http://localhost:18060/mcp
+```
+
+A `405` response means the server is up. No response means it failed to start — check `mcp.log`.
 
 ### 3. 使用功能
 
@@ -63,9 +56,7 @@ python3 scripts/xhs_client.py publish "标题" "内容" "图片URL"
 
 ---
 
-## 📚 完整操作指南
-
-### MCP 工具列表
+## MCP Tools
 
 | 工具 | 功能 | 使用场景 |
 |------|------|---------|
@@ -85,97 +76,13 @@ python3 scripts/xhs_client.py publish "标题" "内容" "图片URL"
 
 ---
 
-## 💬 评论互动策略
+## 评论互动策略
 
-### 人设保持
-
-**人设：理性思考者，不是杠精**
-
-评论区互动要求：
-- ✅ 理性分析，尊重不同意见
-- ✅ 有数据支撑的反驳
-- ✅ 自然的聊天感
-- ❌ 攻击评论者
-- ❌ 强词夺理
-
-### 评论规则
-
-| 评论类型 | 点赞 | 回复 |
-|----------|------|------|
-| 观点一致 | ✅ | ✅ 有延续性 |
-| 部分认同 | ❌ | ✅ 补充观点 |
-| 观点相反 | ❌ | ✅ 尊重表达 |
-| 提问 | ✅ | ✅ 直接回答 |
-| 分享经历 | ✅ | ✅ 共鸣 |
-
-### 回复模板
-
-**观点一致型：**
-```
-"说出了我想说的！[补充细节]"
-"对对对，尤其是[具体例子]..."
-```
-
-**部分认同型：**
-```
-"有道理，不过我觉得[补充观点]"
-"同意一半吧，另外[补充视角]"
-```
-
-**观点相反型：**
-```
-"你的观点挺有意思，不过我觉得[不同看法]"
-"可能我表达不清楚，我想说的是[重新解释]"
-```
-
-**提问型：**
-```
-"好问题！我的看法是[直接回答]"
-"这个要分情况，[分情况说明]"
-```
-
-**分享经历型：**
-```
-"太真实了！[共鸣]"
-"你这个经历太有代表性了！[延伸]"
-```
-
-### 回复要求
-
-1. **每条必回** - 展现活跃度
-2. **主题相关** - 扣住帖子核心
-3. **有延续性** - 不是敷衍
-4. **无 AI 感** - 自然口语化
-5. **保持人设** - 理性思考者
+For full comment strategy (persona, reply templates, tone rules), see [STRATEGY.md](STRATEGY.md).
 
 ---
 
-## 🔧 技术实现
-
-### MCP HTTP API
-
-所有功能都可通过 HTTP API 调用：
-
-```bash
-# MCP Endpoint
-http://localhost:18060/mcp
-
-# 格式
-curl -X POST http://localhost:18060/mcp \
-  -H "Content-Type: application/json" \
-  -H "Mcp-Session-Id: <SESSION_ID>" \
-  -d '{
-    "jsonrpc": "2.0",
-    "id": 1,
-    "method": "tools/call",
-    "params": {
-      "name": "search_feeds",
-      "arguments": {
-        "keyword": "AI"
-      }
-    }
-  }'
-```
+## 技术实现
 
 ### MCP Session 获取
 
@@ -230,91 +137,11 @@ curl -s -X POST "$MCP_URL" \
   }'
 ```
 
-### 示例：评论互动
-
-```bash
-#!/bin/bash
-MCP_URL="http://localhost:18060/mcp"
-COOKIE_FILE="cookies.txt"
-SESSION_ID="YOUR_SESSION_ID"
-
-# 1. 获取评论列表
-curl -s -X POST "$MCP_URL" \
-  -H "Content-Type: application/json" \
-  -H "Mcp-Session-Id: $SESSION_ID" \
-  -d '{
-    "jsonrpc": "2.0",
-    "id": 1,
-    "method": "tools/call",
-    "params": {
-      "name": "get_feed_detail",
-      "arguments": {
-        "feed_id": "698c441c000000002801d381",
-        "xsec_token": "YOUR_TOKEN",
-        "load_all_comments": true
-      }
-    }
-  }'
-
-# 2. 点赞
-curl -s -X POST "$MCP_URL" \
-  -H "Content-Type: application/json" \
-  -H "Mcp-Session-Id: $SESSION_ID" \
-  -d '{
-    "jsonrpc": "2.0",
-    "id": 2,
-    "method": "tools/call",
-    "params": {
-      "name": "like_feed",
-      "arguments": {
-        "feed_id": "698c441c000000002801d381",
-        "xsec_token": "YOUR_TOKEN"
-      }
-    }
-  }'
-
-# 3. 发表评论
-curl -s -X POST "$MCP_URL" \
-  -H "Content-Type: application/json" \
-  -H "Mcp-Session-Id: $SESSION_ID" \
-  -d '{
-    "jsonrpc": "2.0",
-    "id": 3,
-    "method": "tools/call",
-    "params": {
-      "name": "post_comment_to_feed",
-      "arguments": {
-        "feed_id": "698c441c000000002801d381",
-        "xsec_token": "YOUR_TOKEN",
-        "content": "说出了我想说的！补充细节..."
-      }
-    }
-  }'
-
-# 4. 回复评论
-curl -s -X POST "$MCP_URL" \
-  -H "Content-Type: application/json" \
-  -H "Mcp-Session-Id: $SESSION_ID" \
-  -d '{
-    "jsonrpc": "2.0",
-    "id": 4,
-    "method": "tools/call",
-    "params": {
-      "name": "reply_comment_in_feed",
-      "arguments": {
-        "feed_id": "68786933000000000d01a693",
-        "xsec_token": "YOUR_TOKEN",
-        "comment_id": "68786afc000000001101ada6",
-        "user_id": "6695e7370000000003032a17",
-        "content": "说得有道理！补充观点..."
-      }
-    }
-  }'
-```
+If the response contains `"error"`, check login status and retry. Common errors: expired cookies (re-login), missing images (verify file path exists).
 
 ---
 
-## 🛠️ 脚本工具
+## 脚本工具
 
 ### xhs_client.py - Python 客户端
 
@@ -356,7 +183,7 @@ python3 generate_cover.py --title "标题" --output /tmp/cover.jpg
 
 ---
 
-## 📁 文件结构
+## File Structure
 
 ```
 xiaohongshu-mcp-skill/
@@ -379,64 +206,9 @@ xiaohongshu-mcp-skill/
 
 ---
 
-## 📊 测试记录
+## Resources
 
-### 已测试功能 ✅
-
-| 功能 | 状态 | 测试时间 | 备注 |
-|------|------|----------|------|
-| 发布图文 | ✅ | 2026-02-11 | 2 篇已发布 |
-| 搜索内容 | ✅ | 2026-02-11 | 22 条结果 |
-| 获取详情 | ✅ | 2026-02-11 | 含评论列表 |
-| 发表评论 | ✅ | 2026-02-11 | 6 条评论 |
-| 点赞 | ✅ | 2026-02-11 | API 成功 |
-| 收藏 | ✅ | 2026-02-11 | 功能正常 |
-| 回复评论 | ✅ | 2026-02-11 | API 成功 |
-
-### 测试帖子
-
-1. **"美院学生都在用AI？我就笑了"**
-   - Feed ID: `698c441c000000002801d381`
-   - 点赞: 2, 评论: 6
-
-2. **"AI正在毁掉这一代年轻人？"**
-   - Feed ID: `698c76f8000000001a024a93`
-   - 点赞: 1, 评论: 0
-
----
-
-## 🔗 相关资源
-
-- **GitHub**: https://github.com/tclawde/xiaohongshu-mcp-skill
-- **MCP 服务器**: [xpzouying/xiaohongshu-mcp](https://github.com/xpzouying/xiaohongshu-mcp)
-- **OpenClaw**: https://github.com/openclaw/openclaw
-
----
-
-## 📝 更新日志
-
-### v3.0 (2026-02-11)
-
-- ✅ 新增完整评论互动策略
-- ✅ 新增 MCP HTTP API 调用示例
-- ✅ 新增 13 个工具完整列表
-- ✅ 新增脚本工具使用说明
-- ✅ 新增技术实现细节
-- ✅ 新增测试记录
-
-### v2.0 (2026-02-11)
-
-- ✅ 登录修复（支持小红书页面变更）
-- ✅ 飞书通知集成
-- ✅ Python 客户端完善
-
-### v1.0 (2026-02-11)
-
-- ✅ 初始版本
-- ✅ 基础发布功能
-- ✅ 搜索功能
-
----
-
-**维护者**: TClawDE 🦀
-**最后更新**: 2026-02-11
+- [README.md](README.md) — Full Chinese documentation
+- [STRATEGY.md](STRATEGY.md) — Content strategy and comment interaction rules
+- [BEST_PRACTICE.md](BEST_PRACTICE.md) — Publishing best practices
+- [xpzouying/xiaohongshu-mcp](https://github.com/xpzouying/xiaohongshu-mcp) — Upstream MCP server
